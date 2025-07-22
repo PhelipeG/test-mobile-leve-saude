@@ -1,50 +1,54 @@
-# Welcome to your Expo app 👋
+# FeedbackHub - Teste Técnico React Native
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Aplicativo mobile para envio e listagem de feedbacks para usuario final, desenvolvido como teste técnico para vaga de desenvolvedor React/React Native.
 
-## Get started
+## 📱 Sobre o Projeto
 
-1. Install dependencies
+O FeedbackHub permite que usuários autenticados enviem feedbacks com nota (1 a 5 estrelas) e comentário, além de visualizar todos os feedbacks enviados por eles.
 
-   ```bash
+## 🚀 Tecnologias Utilizadas
+
+- [Expo](https://expo.dev/)
+- [React Native](https://reactnative.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Firebase Auth & Firestore](https://firebase.google.com/)
+- [EAS Build](https://docs.expo.dev/build/introduction/)
+- ESLint + Prettier
+
+## ⚙️ Funcionalidades
+
+- Autenticação com Firebase (email e senha)
+- Envio de feedback com nota (1 a 5 estrelas) e comentário (mínimo 10 caracteres)
+- Listagem dos feedbacks enviados pelo usuário logado
+- Exclusão de feedback
+- Estilização com StyleSheet
+
+## 📝 Como rodar o projeto
+
+1. **Clone o repositório:**
+   ```sh
+   git clone [URL_DO_REPOSITORIO]
+   cd test-mobile-leve-saude
+   ```
+2. **Instale as dependências:**
+   ```sh
    npm install
    ```
+3. **Configure o Firebase:**
+   - Crie um projeto no [Firebase Console](https://console.firebase.google.com/).
+   - Adicione um aplicativo web e copie as credenciais.
+   - No projeto, renomeie o arquivo `.env.example` para `.env` e cole as credenciais do Firebase.
 
-2. Start the app
-
-   ```bash
-   npx expo start
+4. **Rode o aplicativo:**
+   ```sh
+   npm start
    ```
+   - Utilize o Expo Go no seu dispositivo móvel para escanear o QR Code e abrir o aplicativo.
 
-In the output, you'll find options to open the app in a
+## 📧 Contato
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+- **Nome:** Luis Felipe Silva 
+- **Email:** luisphelipe1000@gmail.com
+- **LinkedIn:** [linkedin.com/in/luis-felipe-silv](https://www.linkedin.com/in/luis-felipe-silv)
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Sinta-se à vontade para entrar em contato para mais informações ou oportunidades de colaboração!
