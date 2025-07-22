@@ -1,29 +1,41 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
+import { Loading } from "@/components/loading";
+import { AuthProvider, useAuthContext } from "@/context/AuthContext";
+import { Stack, useRouter } from "expo-router";
+import { useEffect } from "react";
 
-import { useColorScheme } from '@/hooks/useColorScheme';
+export function LayoutWithAuth() {
+  const { user, loading } = useAuthContext();
+  const router = useRouter();
 
-export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
+  useEffect(() => {
+    if (loading) return;
 
-  if (!loaded) {
-    // Async font loading only occurs in development.
-    return null;
+    if (user) {
+      router.replace('/(tabs)/feedback/new');
+    } else {
+      router.replace('/login');
+    }
+  }, [user, loading, router]);
+
+  if (loading) {
+    return (
+      <Loading />
+    );
   }
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <Stack screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="login" />
+      <Stack.Screen name="register" />
+      <Stack.Screen name="(tabs)" />
+    </Stack>
+  );
+}
+
+export default function RootLayout() {
+  return (
+    <AuthProvider>
+      <LayoutWithAuth />
+    </AuthProvider>
   );
 }

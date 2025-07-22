@@ -1,6 +1,6 @@
 # FeedbackHub - Teste Técnico React Native
 
-Aplicativo mobile para envio e listagem de feedbacks para usuario final, desenvolvido como teste técnico para vaga de desenvolvedor React/React Native.
+Aplicativo mobile para envio e listagem de feedbacks para usuário final, desenvolvido como teste técnico para vaga de desenvolvedor React/React Native.
 
 ## 📱 Sobre o Projeto
 
@@ -23,11 +23,43 @@ O FeedbackHub permite que usuários autenticados enviem feedbacks com nota (1 a 
 - Exclusão de feedback
 - Estilização com StyleSheet
 
+## 🛠️ Configuração do EAS Build
+
+O projeto utiliza o [EAS Build](https://docs.expo.dev/build/introduction/) para gerar builds nativas (APK, AAB, IPA).
+
+1. **Instale o EAS CLI globalmente:**
+   ```sh
+   npm install -g eas-cli
+   ```
+
+2. **Faça login na sua conta Expo:**
+   ```sh
+   eas login
+   ```
+
+3. **Configure o projeto para EAS Build:**
+   ```sh
+   eas build:configure
+   ```
+   Isso irá gerar/atualizar o arquivo `eas.json` na raiz do projeto.
+
+4. **Para gerar um build:**
+   - Android:
+     ```sh
+     eas build -p android
+     ```
+   - iOS:
+     ```sh
+     eas build -p ios
+     ```
+
+   Siga as instruções do terminal para configurar certificados e perfis, se necessário.
+
 ## 📝 Como rodar o projeto
 
 1. **Clone o repositório:**
    ```sh
-   git clone [URL_DO_REPOSITORIO]
+   git clone https://github.com/PhelipeG/test-mobile-leve-saude.git
    cd test-mobile-leve-saude
    ```
 2. **Instale as dependências:**
