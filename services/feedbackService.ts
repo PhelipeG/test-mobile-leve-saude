@@ -28,6 +28,7 @@ export async function getUserFeedbacks(uid: string): Promise<Feedback[]> {
     const data = doc.data() as any;
     return {
       id: doc.id,
+      userName: data.userName,
       comment: data.comment,
       rating: data.rating || 0,
       createdAt: data.createdAt.toDate().toISOString(),
