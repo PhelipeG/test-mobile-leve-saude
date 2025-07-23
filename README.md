@@ -23,6 +23,17 @@ O FeedbackHub permite que usuários autenticados enviem feedbacks com nota (1 a 
 - Exclusão de feedback
 - Estilização com StyleSheet
 
+## 🖼️ Screenshots
+
+Veja abaixo algumas telas do aplicativo:
+
+<p align="center">
+  <img src="assets/images/screenshorts/tela-login.png" alt="Tela 1" width="200"/>
+  <img src="assets/images/screenshorts/tela-criar-conta.png" alt="Tela 2" width="200"/>
+  <img src="assets/images/screenshorts/tela-feedback.png" alt="Tela 3" width="200"/>
+  <img src="assets/images/screenshorts/tela-meus-feedbacks.png" alt="Tela 4" width="200"/>
+</p>
+
 ## 🛠️ Configuração do EAS Build
 
 O projeto utiliza o [EAS Build](https://docs.expo.dev/build/introduction/) para gerar builds nativas (APK, AAB, IPA).
@@ -67,9 +78,9 @@ O projeto utiliza o [EAS Build](https://docs.expo.dev/build/introduction/) para 
    npm install
    ```
 3. **Configure o Firebase:**
-   - Crie um projeto no [Firebase Console](https://console.firebase.google.com/).
-   - Adicione um aplicativo web e copie as credenciais.
-   - No projeto, renomeie o arquivo `.env.example` para `.env` e cole as credenciais do Firebase.
+   - As credenciais do Firebase já estão configuradas no projeto para testes temporários.
+   - **Atenção:** Essas credenciais serão removidas posteriormente por motivos de segurança.
+   - Caso queira utilizar seu próprio projeto Firebase, renomeie o arquivo `.env.example` para `.env` e insira suas credenciais.
 
 4. **Rode o aplicativo:**
    ```sh
