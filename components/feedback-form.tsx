@@ -1,6 +1,4 @@
-import { COLORS } from "@/constants/theme";
-import { useFeedbacks } from "@/hooks/useFeedbacks";
-import { useState } from "react";
+import { useState } from 'react'
 import {
   Alert,
   KeyboardAvoidingView,
@@ -11,38 +9,41 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  View
-} from "react-native";
+  View,
+} from 'react-native'
+
+import { COLORS } from '@/constants/theme'
+import { useFeedbacks } from '@/hooks/useFeedbacks'
 
 export function FeedbackForm() {
-  const [message, setMessage] = useState("");
-  const [rating, setRating] = useState<number>(0);
-  const { addFeedback } = useFeedbacks();
+  const [message, setMessage] = useState('')
+  const [rating, setRating] = useState<number>(0)
+  const { addFeedback } = useFeedbacks()
 
   const handleSubmit = async () => {
     if (!message.trim() || rating === 0) {
-      Alert.alert("Erro", "Preencha a mensagem e selecione uma nota.");
-      return;
+      Alert.alert('Erro', 'Preencha a mensagem e selecione uma nota.')
+      return
     }
     if (message.trim().length < 10) {
-      Alert.alert("Erro", "A mensagem deve ter pelo menos 10 caracteres.");
-      return;
+      Alert.alert('Erro', 'A mensagem deve ter pelo menos 10 caracteres.')
+      return
     }
 
     try {
-      await addFeedback(message, rating);
-      Alert.alert("Sucesso", "Feedback enviado!");
-      setMessage("");
-      setRating(0);
+      await addFeedback(message, rating)
+      Alert.alert('Sucesso', 'Feedback enviado!')
+      setMessage('')
+      setRating(0)
     } catch (error: any) {
-      Alert.alert("Erro", error.message);
+      Alert.alert('Erro', error.message)
     }
-  };
+  }
 
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       keyboardVerticalOffset={80}
     >
       <ScrollView
@@ -58,14 +59,9 @@ export function FeedbackForm() {
               <Pressable
                 key={num}
                 onPress={() => setRating(num)}
-                style={({ pressed }) => [
-                  styles.starButton,
-                  pressed && styles.starPressed,
-                ]}
+                style={({ pressed }) => [styles.starButton, pressed && styles.starPressed]}
               >
-                <Text style={rating >= num ? styles.starSelected : styles.star}>
-                  ★
-                </Text>
+                <Text style={rating >= num ? styles.starSelected : styles.star}>★</Text>
               </Pressable>
             ))}
           </View>
@@ -79,47 +75,44 @@ export function FeedbackForm() {
             multiline
             numberOfLines={4}
           />
-          <Text style={styles.charCounter}>
-            {message.length}/10 caracteres mínimos
-          </Text>
+          <Text style={styles.charCounter}>{message.length}/10 caracteres mínimos</Text>
 
           <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
             <Text style={styles.submitButtonText}>Enviar Feedback</Text>
           </TouchableOpacity>
-
         </View>
       </ScrollView>
     </KeyboardAvoidingView>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
   scrollContainer: {
     flexGrow: 1,
-    justifyContent: "center",
+    justifyContent: 'center',
     paddingHorizontal: 24,
     paddingVertical: 20,
   },
   container: {
-    width: "100%",
+    width: '100%',
     maxWidth: 600,
-    alignSelf: "center",
+    alignSelf: 'center',
     padding: 16,
   },
   label: {
-    textAlign: "center",
+    textAlign: 'center',
     fontSize: 16,
     marginBottom: 10,
-    fontWeight: "500",
+    fontWeight: '500',
   },
   ratingText: {
     fontSize: 14,
     color: COLORS.gray,
     marginBottom: 8,
-    fontWeight: "600",
+    fontWeight: '600',
   },
   starsContainer: {
-    flexDirection: "row",
+    flexDirection: 'row',
     marginBottom: 16,
   },
   starButton: {
@@ -140,7 +133,7 @@ const styles = StyleSheet.create({
     marginRight: 6,
   },
   input: {
-    width: "100%",
+    width: '100%',
     minHeight: 80,
     maxHeight: 150,
     borderWidth: 1.5,
@@ -148,23 +141,23 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 12,
     marginBottom: 8,
-    textAlignVertical: "top",
-    backgroundColor: "#fff",
+    textAlignVertical: 'top',
+    backgroundColor: '#fff',
   },
   charCounter: {
     fontSize: 12,
     color: COLORS.gray,
     marginBottom: 16,
-    textAlign: "right",
+    textAlign: 'right',
   },
   submitButton: {
     backgroundColor: COLORS.primary,
     paddingVertical: 12,
     borderRadius: 8,
-    alignItems: "center",
+    alignItems: 'center',
   },
   submitButtonText: {
     color: COLORS.white,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
-});
+})

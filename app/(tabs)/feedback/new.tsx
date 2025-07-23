@@ -1,5 +1,3 @@
-import { FeedbackForm } from "@/components/feedback-form";
-import { Header } from "@/components/header";
 import {
   KeyboardAvoidingView,
   Platform,
@@ -8,8 +6,12 @@ import {
   StatusBar,
   StyleSheet,
   View,
-} from "react-native";
-import { COLORS } from "../../../constants/theme";
+} from 'react-native'
+
+import { FeedbackForm } from '@/components/feedback-form'
+import { Header } from '@/components/header'
+
+import { COLORS } from '../../../constants/theme'
 
 export default function NewFeedback() {
   return (
@@ -17,7 +19,7 @@ export default function NewFeedback() {
       <StatusBar barStyle="dark-content" />
       <SafeAreaView style={styles.safeArea}>
         <KeyboardAvoidingView
-          behavior={Platform.OS === "ios" ? "padding" : "height"}
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
           keyboardVerticalOffset={80}
         >
           <ScrollView
@@ -35,7 +37,7 @@ export default function NewFeedback() {
         </KeyboardAvoidingView>
       </SafeAreaView>
     </>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -50,19 +52,19 @@ const styles = StyleSheet.create({
   },
   scrollContainer: {
     flexGrow: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   container: {
-    width: "100%",
+    width: '100%',
     maxWidth: 400,
-    justifyContent: "center",
-    alignItems: "center",
-    alignSelf: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
   },
   title: {
     fontSize: 24,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     color: COLORS.primary,
   },
-});
+})

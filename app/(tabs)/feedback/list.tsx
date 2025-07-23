@@ -1,11 +1,13 @@
-import { ButtonLogout } from "@/components/button-logout";
-import { FeedbackCard } from "@/components/feedback-card";
-import { FlatList, StyleSheet, Text, View } from "react-native";
-import { useFeedbacks } from "../../../hooks/useFeedbacks";
+import { FlatList, StyleSheet, Text, View } from 'react-native'
+
+import { ButtonLogout } from '@/components/button-logout'
+import { FeedbackCard } from '@/components/feedback-card'
+
+import { useFeedbacks } from '../../../hooks/useFeedbacks'
 
 export default function FeedbackList() {
-  const { feedbacks, loading } = useFeedbacks();
-  
+  const { feedbacks, loading } = useFeedbacks()
+
   return (
     <View style={styles.container}>
       {loading ? (
@@ -20,9 +22,7 @@ export default function FeedbackList() {
                 message={item.comment}
                 createdAt={item.createdAt}
                 userName={
-                  item.userName && item.userName.trim() !== ""
-                    ? item.userName
-                    : "Usuário Anônimo"
+                  item.userName && item.userName.trim() !== '' ? item.userName : 'Usuário Anônimo'
                 }
                 rating={item.rating}
               />
@@ -40,13 +40,13 @@ export default function FeedbackList() {
         <ButtonLogout />
       </View>
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     paddingTop: 10,
   },
   list: {
@@ -54,28 +54,28 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   listContent: {
-    paddingBottom: 80, 
+    paddingBottom: 80,
   },
   loadingText: {
-    textAlign: "center",
+    textAlign: 'center',
     fontSize: 16,
-    color: "#666",
+    color: '#666',
     marginTop: 50,
   },
   emptyText: {
-    textAlign: "center",
+    textAlign: 'center',
     fontSize: 16,
-    color: "#666",
+    color: '#666',
     marginTop: 50,
   },
   footerFixed: {
-    position: "absolute",
+    position: 'absolute',
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     padding: 20,
     borderTopWidth: 1,
-    borderColor: "#eee",
+    borderColor: '#eee',
   },
-});
+})

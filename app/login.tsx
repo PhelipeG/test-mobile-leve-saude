@@ -1,7 +1,5 @@
-import { Header } from "@/components/header";
-import { login } from "@/services/authService";
-import { useRouter } from "expo-router";
-import { useState } from "react";
+import { useRouter } from 'expo-router'
+import { useState } from 'react'
 import {
   Alert,
   KeyboardAvoidingView,
@@ -14,27 +12,31 @@ import {
   TextInput,
   TouchableOpacity,
   View,
-} from "react-native";
-import { COLORS } from "../constants/theme";
+} from 'react-native'
+
+import { Header } from '@/components/header'
+import { login } from '@/services/authService'
+
+import { COLORS } from '../constants/theme'
 
 export default function LoginScreen() {
-  const router = useRouter();
-  const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
-  const [carregando, setCarregando] = useState(false);
+  const router = useRouter()
+  const [email, setEmail] = useState('')
+  const [senha, setSenha] = useState('')
+  const [carregando, setCarregando] = useState(false)
 
   const handleLogin = async () => {
-    setCarregando(true);
+    setCarregando(true)
     try {
-      await login(email, senha);
-      Alert.alert("Login realizado com sucesso!");
-      router.replace("/feedback/new");
+      await login(email, senha)
+      Alert.alert('Login realizado com sucesso!')
+      router.replace('/feedback/new')
     } catch (error: any) {
-      Alert.alert("Erro no login", error.message);
+      Alert.alert('Erro no login', error.message)
     } finally {
-      setCarregando(false);
+      setCarregando(false)
     }
-  };
+  }
 
   return (
     <>
@@ -42,7 +44,7 @@ export default function LoginScreen() {
       <SafeAreaView style={styles.safeArea}>
         <KeyboardAvoidingView
           style={styles.keyboardView}
-          behavior={Platform.OS === "ios" ? "padding" : "height"}
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
           keyboardVerticalOffset={80}
         >
           <ScrollView
@@ -71,31 +73,25 @@ export default function LoginScreen() {
                 value={senha}
               />
 
-              <TouchableOpacity
-                style={styles.button}
-                onPress={handleLogin}
-                disabled={carregando}
-              >
+              <TouchableOpacity style={styles.button} onPress={handleLogin} disabled={carregando}>
                 <Text style={styles.buttonText}>Entrar</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity onPress={() => router.replace("/register")}>
-                <Text style={styles.linkText}>
-                  Não tem conta? Registre-se aqui
-                </Text>
+              <TouchableOpacity onPress={() => router.replace('/register')}>
+                <Text style={styles.linkText}>Não tem conta? Registre-se aqui</Text>
               </TouchableOpacity>
             </View>
           </ScrollView>
         </KeyboardAvoidingView>
       </SafeAreaView>
     </>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    marginTop: Platform.OS === "android" ? 25 : 0,
+    marginTop: Platform.OS === 'android' ? 25 : 0,
     backgroundColor: COLORS.background,
   },
   keyboardView: {
@@ -103,26 +99,26 @@ const styles = StyleSheet.create({
   },
   scrollContainer: {
     flexGrow: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     paddingHorizontal: 24,
   },
   container: {
-    width: "100%",
+    width: '100%',
     maxWidth: 400,
-    alignSelf: "center",
-    justifyContent: "center",
-    alignItems: "center",
+    alignSelf: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   title: {
     marginTop: 8,
     fontSize: 24,
     marginBottom: 32,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     color: COLORS.primary,
   },
   input: {
-    width: "100%",
+    width: '100%',
     height: 50,
     borderColor: COLORS.gray,
     borderWidth: 1,
@@ -136,16 +132,16 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.primary,
     paddingVertical: 12,
     borderRadius: 8,
-    width: "100%",
-    alignItems: "center",
+    width: '100%',
+    alignItems: 'center',
     marginBottom: 12,
   },
   buttonText: {
     color: COLORS.white,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   linkText: {
     color: COLORS.primary,
     marginTop: 8,
   },
-});
+})

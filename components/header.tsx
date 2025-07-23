@@ -1,6 +1,7 @@
-import LogoMain from "@/assets/images/logo-main.jpg";
-import { COLORS } from "@/constants/theme";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View } from 'react-native'
+
+import LogoMain from '@/assets/images/logo-main.jpg'
+import { COLORS } from '@/constants/theme'
 
 export function Header() {
   return (
@@ -15,15 +16,15 @@ export function Header() {
 const styles = StyleSheet.create({
   header: {
     backgroundColor: COLORS.background,
-    alignItems: "center",
+    alignItems: 'center',
   },
-  imageContainer:{
+  imageContainer: {
     width: 250,
     height: 100,
   },
   title: {
     fontSize: 24,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     color: COLORS.text,
   },
 })

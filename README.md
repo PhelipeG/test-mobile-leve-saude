@@ -39,19 +39,23 @@ Veja abaixo algumas telas do aplicativo:
 O projeto utiliza o [EAS Build](https://docs.expo.dev/build/introduction/) para gerar builds nativas (APK, AAB, IPA).
 
 1. **Instale o EAS CLI globalmente:**
+
    ```sh
    npm install -g eas-cli
    ```
 
 2. **Faça login na sua conta Expo:**
+
    ```sh
    eas login
    ```
 
 3. **Configure o projeto para EAS Build:**
+
    ```sh
    eas build:configure
    ```
+
    Isso irá gerar/atualizar o arquivo `eas.json` na raiz do projeto.
 
 4. **Para gerar um build:**
@@ -83,14 +87,16 @@ O projeto utiliza o [EAS Build](https://docs.expo.dev/build/introduction/) para 
    - Caso queira utilizar seu próprio projeto Firebase, renomeie o arquivo `.env.example` para `.env` e insira suas credenciais.
 
 4. **Rode o aplicativo:**
+
    ```sh
    npm start
    ```
+
    - Utilize o Expo Go no seu dispositivo móvel para escanear o QR Code e abrir o aplicativo.
 
 ## 📧 Contato
 
-- **Nome:** Luis Felipe Silva 
+- **Nome:** Luis Felipe Silva
 - **Email:** luisphelipe1000@gmail.com
 - **LinkedIn:** [linkedin.com/in/luis-felipe-silv](https://www.linkedin.com/in/luis-felipe-silv)
 

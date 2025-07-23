@@ -1,26 +1,25 @@
-import { Loading } from "@/components/loading";
-import { AuthProvider, useAuthContext } from "@/context/AuthContext";
-import { Stack, useRouter } from "expo-router";
-import { useEffect } from "react";
+import { Stack, useRouter } from 'expo-router'
+import { useEffect } from 'react'
+
+import { Loading } from '@/components/loading'
+import { AuthProvider, useAuthContext } from '@/context/AuthContext'
 
 export function LayoutWithAuth() {
-  const { user, loading } = useAuthContext();
-  const router = useRouter();
+  const { user, loading } = useAuthContext()
+  const router = useRouter()
 
   useEffect(() => {
-    if (loading) return;
+    if (loading) return
 
     if (user) {
-      router.replace('/(tabs)/feedback/new');
+      router.replace('/(tabs)/feedback/new')
     } else {
-      router.replace('/login');
+      router.replace('/login')
     }
-  }, [user, loading, router]);
+  }, [user, loading, router])
 
   if (loading) {
-    return (
-      <Loading />
-    );
+    return <Loading />
   }
 
   return (
@@ -29,7 +28,7 @@ export function LayoutWithAuth() {
       <Stack.Screen name="register" />
       <Stack.Screen name="(tabs)" />
     </Stack>
-  );
+  )
 }
 
 export default function RootLayout() {
@@ -37,5 +36,5 @@ export default function RootLayout() {
     <AuthProvider>
       <LayoutWithAuth />
     </AuthProvider>
-  );
+  )
 }

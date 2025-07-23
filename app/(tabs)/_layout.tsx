@@ -1,6 +1,7 @@
-import { Ionicons } from '@expo/vector-icons';
-import { Tabs } from 'expo-router';
-import { COLORS } from '../../constants/theme';
+import { Ionicons } from '@expo/vector-icons'
+import { Tabs } from 'expo-router'
+
+import { COLORS } from '../../constants/theme'
 
 export default function TabLayout() {
   return (
@@ -29,5 +30,5 @@ export default function TabLayout() {
         }}
       />
     </Tabs>
-  );
+  )
 }

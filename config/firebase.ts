@@ -1,6 +1,6 @@
-import { getApp, getApps, initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
-import { getFirestore } from 'firebase/firestore';
+import { getApp, getApps, initializeApp } from 'firebase/app'
+import { getAuth } from 'firebase/auth'
+import { getFirestore } from 'firebase/firestore'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCNzFga3wYGHSKpK8PAdSiSnrFVq7Ox1AE',
@@ -9,10 +9,9 @@ const firebaseConfig = {
   storageBucket: 'backend-leve-saude.firebasestorage.app',
   messagingSenderId: '1060629432200',
   appId: '1:1060629432200:web:ffbff04d342def2f921c3d',
-};
+}
 
-const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
+const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp()
 
-export const auth = getAuth(app);
-export const db = getFirestore(app);
-
+export const auth = getAuth(app)
+export const db = getFirestore(app)
