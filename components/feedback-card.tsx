@@ -13,7 +13,7 @@ interface FeedbackCardProps {
 }
 
 export function FeedbackCard({ message, createdAt, userName, rating, id }: FeedbackCardProps) {
-  const { removeFeedback } = useFeedbacks()
+  const { removeFeedback , fetchFeedbacks } = useFeedbacks()
   const handleDelete = (id: string) => {
     Alert.alert('Remover feedback', 'Deseja realmente remover este feedback?', [
       { text: 'Cancelar', style: 'cancel' },
@@ -22,6 +22,7 @@ export function FeedbackCard({ message, createdAt, userName, rating, id }: Feedb
         style: 'destructive',
         onPress: async () => {
           await removeFeedback(id)
+          await fetchFeedbacks()
         },
       },
     ])

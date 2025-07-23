@@ -61,7 +61,6 @@ export function useFeedbacks() {
     try {
       await deleteFeedback(feedbackId)
       setFeedbacks((prev) => prev.filter((fb) => fb.id !== feedbackId))
-      await fetchFeedbacks()
     } catch (error: any) {
       console.error('Erro ao deletar feedback:', error)
       Alert.alert('Erro', 'Não foi possível deletar o feedback')
@@ -73,5 +72,6 @@ export function useFeedbacks() {
     loading,
     addFeedback,
     removeFeedback,
+    fetchFeedbacks,
   }
 }
