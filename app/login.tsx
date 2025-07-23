@@ -1,10 +1,14 @@
-// app/login.tsx
 import { Header } from "@/components/header";
 import { login } from "@/services/authService";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import {
   Alert,
+  KeyboardAvoidingView,
+  Platform,
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
   StyleSheet,
   Text,
   TextInput,
@@ -13,7 +17,7 @@ import {
 } from "react-native";
 import { COLORS } from "../constants/theme";
 
-export default function Login() {
+export default function LoginScreen() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
@@ -33,51 +37,85 @@ export default function Login() {
   };
 
   return (
-    <View style={styles.container}>
-      <Header />
-      <Text style={styles.title}>Entrar</Text>
+    <>
+      <StatusBar barStyle="dark-content" />
+      <SafeAreaView style={styles.safeArea}>
+        <KeyboardAvoidingView
+          style={styles.keyboardView}
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+          keyboardVerticalOffset={80}
+        >
+          <ScrollView
+            contentContainerStyle={styles.scrollContainer}
+            showsVerticalScrollIndicator={false}
+            keyboardShouldPersistTaps="handled"
+          >
+            <View style={styles.container}>
+              <Header />
+              <Text style={styles.title}>Entrar</Text>
 
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        keyboardType="email-address"
-        autoCapitalize="none"
-        onChangeText={setEmail}
-        value={email}
-      />
+              <TextInput
+                style={styles.input}
+                placeholder="Email"
+                keyboardType="email-address"
+                autoCapitalize="none"
+                onChangeText={setEmail}
+                value={email}
+              />
 
-      <TextInput
-        style={styles.input}
-        placeholder="Senha"
-        secureTextEntry
-        onChangeText={setSenha}
-        value={senha}
-      />
+              <TextInput
+                style={styles.input}
+                placeholder="Senha"
+                secureTextEntry
+                onChangeText={setSenha}
+                value={senha}
+              />
 
-      <TouchableOpacity
-        style={styles.button}
-        onPress={handleLogin}
-        disabled={carregando}
-      >
-        <Text style={styles.buttonText}>Entrar</Text>
-      </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={handleLogin}
+                disabled={carregando}
+              >
+                <Text style={styles.buttonText}>Entrar</Text>
+              </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => router.replace("/register")}>
-        <Text style={styles.linkText}>Nao tem conta? Registre-se aqui</Text>
-      </TouchableOpacity>
-    </View>
+              <TouchableOpacity onPress={() => router.replace("/register")}>
+                <Text style={styles.linkText}>
+                  Não tem conta? Registre-se aqui
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </ScrollView>
+        </KeyboardAvoidingView>
+      </SafeAreaView>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  safeArea: {
     flex: 1,
+    marginTop: Platform.OS === "android" ? 25 : 0,
     backgroundColor: COLORS.background,
+  },
+  keyboardView: {
+    flex: 1,
+  },
+  scrollContainer: {
+    flexGrow: 1,
     justifyContent: "center",
     alignItems: "center",
-    padding: 24,
+    paddingHorizontal: 24,
+  },
+  container: {
+    width: "100%",
+    maxWidth: 400,
+    alignSelf: "center",
+    justifyContent: "center",
+    alignItems: "center",
   },
   title: {
+    marginTop: 8,
     fontSize: 24,
     marginBottom: 32,
     fontWeight: "bold",

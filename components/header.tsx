@@ -15,12 +15,11 @@ export function Header() {
 const styles = StyleSheet.create({
   header: {
     backgroundColor: COLORS.background,
-    padding: 20,
     alignItems: "center",
   },
   imageContainer:{
     width: 250,
-    height: 150,
+    height: 100,
   },
   title: {
     fontSize: 24,

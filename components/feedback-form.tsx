@@ -3,12 +3,15 @@ import { useFeedbacks } from "@/hooks/useFeedbacks";
 import { useState } from "react";
 import {
   Alert,
-  Button,
+  KeyboardAvoidingView,
+  Platform,
   Pressable,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
-  View,
+  TouchableOpacity,
+  View
 } from "react-native";
 
 export function FeedbackForm() {
@@ -37,49 +40,76 @@ export function FeedbackForm() {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.label}>Como você avaliaria sua experiência?</Text>
-      <Text style={styles.ratingText}>Nota: {rating}/5</Text>
-      <View style={styles.starsContainer}>
-        {[1, 2, 3, 4, 5].map((num) => (
-          <Pressable
-            key={num}
-            onPress={() => setRating(num)}
-            style={styles.starButton}
-          >
-            <Text style={rating >= num ? styles.starSelected : styles.star}>
-              ★
-            </Text>
-          </Pressable>
-        ))}
-      </View>
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      keyboardVerticalOffset={80}
+    >
+      <ScrollView
+        contentContainerStyle={styles.scrollContainer}
+        keyboardShouldPersistTaps="handled"
+      >
+        <View style={styles.container}>
+          <Text style={styles.label}>Como você avaliaria sua experiência?</Text>
+          <Text style={styles.ratingText}>Nota: {rating}/5</Text>
 
-      <Text style={styles.label}>Deixe seu comentário:</Text>
-      <TextInput
-        placeholder="Digite seu feedback (minimo 10 caracteres)..."
-        value={message}
-        onChangeText={setMessage}
-        style={[
-          styles.input,
-          message.length > 0 && message.length < 10 && styles.inputError,
-        ]}
-        multiline
-      />
-      <Text style={styles.charCounter}>
-        {message.length}/10 caracteres mínimos
-      </Text>
-      <Button title="Enviar Feedback" onPress={handleSubmit} color="#4F46E5" />
-    </View>
+          <View style={styles.starsContainer}>
+            {[1, 2, 3, 4, 5].map((num) => (
+              <Pressable
+                key={num}
+                onPress={() => setRating(num)}
+                style={({ pressed }) => [
+                  styles.starButton,
+                  pressed && styles.starPressed,
+                ]}
+              >
+                <Text style={rating >= num ? styles.starSelected : styles.star}>
+                  ★
+                </Text>
+              </Pressable>
+            ))}
+          </View>
+
+          <Text style={styles.label}>Deixe seu comentário:</Text>
+          <TextInput
+            placeholder="Digite seu feedback (mínimo 10 caracteres)..."
+            value={message}
+            onChangeText={setMessage}
+            style={styles.input}
+            multiline
+            numberOfLines={4}
+          />
+          <Text style={styles.charCounter}>
+            {message.length}/10 caracteres mínimos
+          </Text>
+
+          <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
+            <Text style={styles.submitButtonText}>Enviar Feedback</Text>
+          </TouchableOpacity>
+
+        </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 }
+
 const styles = StyleSheet.create({
+  scrollContainer: {
+    flexGrow: 1,
+    justifyContent: "center",
+    paddingHorizontal: 24,
+    paddingVertical: 20,
+  },
   container: {
+    width: "100%",
+    maxWidth: 600,
+    alignSelf: "center",
     padding: 16,
-    marginVertical: 16,
   },
   label: {
+    textAlign: "center",
     fontSize: 16,
-    marginBottom: 8,
+    marginBottom: 10,
     fontWeight: "500",
   },
   ratingText: {
@@ -90,40 +120,51 @@ const styles = StyleSheet.create({
   },
   starsContainer: {
     flexDirection: "row",
-    marginBottom: 12,
+    marginBottom: 16,
   },
   starButton: {
-    paddingHorizontal: 4,
-    paddingVertical: 8,
+    paddingHorizontal: 6,
+    paddingVertical: 4,
+  },
+  starPressed: {
+    transform: [{ scale: 1.1 }],
   },
   star: {
     fontSize: 32,
     color: COLORS.gray,
-    marginRight: 8,
+    marginRight: 6,
   },
   starSelected: {
     fontSize: 32,
     color: COLORS.stars,
-    marginRight: 8,
+    marginRight: 6,
   },
   input: {
-    height: 100,
-    borderWidth: 2,
+    width: "100%",
+    minHeight: 80,
+    maxHeight: 150,
+    borderWidth: 1.5,
     borderColor: COLORS.borderColor,
     borderRadius: 8,
     padding: 12,
-    marginBottom: 12,
-    minHeight: 80,
+    marginBottom: 8,
     textAlignVertical: "top",
     backgroundColor: "#fff",
-  },
-  inputError: {
-    borderColor: COLORS.error,
   },
   charCounter: {
     fontSize: 12,
     color: COLORS.gray,
-    marginBottom: 12,
-    textAlign: 'right',
+    marginBottom: 16,
+    textAlign: "right",
+  },
+  submitButton: {
+    backgroundColor: COLORS.primary,
+    paddingVertical: 12,
+    borderRadius: 8,
+    alignItems: "center",
+  },
+  submitButtonText: {
+    color: COLORS.white,
+    fontWeight: "bold",
   },
 });

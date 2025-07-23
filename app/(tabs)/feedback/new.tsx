@@ -1,67 +1,68 @@
-import { FeedbackForm } from '@/components/feedback-form';
-import { Header } from '@/components/header';
-import { StyleSheet, Text, View } from 'react-native';
-import { COLORS } from '../../../constants/theme';
+import { FeedbackForm } from "@/components/feedback-form";
+import { Header } from "@/components/header";
+import {
+  KeyboardAvoidingView,
+  Platform,
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  View,
+} from "react-native";
+import { COLORS } from "../../../constants/theme";
 
 export default function NewFeedback() {
-
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Novo Feedback</Text>
-      <View style={styles.form}>
-        <Header />
-        <FeedbackForm />
-      </View>
-    </View>
+    <>
+      <StatusBar barStyle="dark-content" />
+      <SafeAreaView style={styles.safeArea}>
+        <KeyboardAvoidingView
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+          keyboardVerticalOffset={80}
+        >
+          <ScrollView
+            contentContainerStyle={styles.scrollContainer}
+            showsVerticalScrollIndicator={false}
+            keyboardShouldPersistTaps="handled"
+          >
+            <View style={styles.headerWrapper}>
+              <Header />
+            </View>
+            <View style={styles.container}>
+              <FeedbackForm />
+            </View>
+          </ScrollView>
+        </KeyboardAvoidingView>
+      </SafeAreaView>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  safeArea: {
     flex: 1,
-    backgroundColor: '#fff',
-    paddingTop: 50,
-    paddingHorizontal: 20,
+    backgroundColor: COLORS.background,
+  },
+  headerWrapper: {
+    width: '100%',
+    alignItems: 'center',
+    marginBottom: 8,
+  },
+  scrollContainer: {
+    flexGrow: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  container: {
+    width: "100%",
+    maxWidth: 400,
+    justifyContent: "center",
+    alignItems: "center",
+    alignSelf: "center",
   },
   title: {
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     color: COLORS.primary,
-    marginBottom: 30,
-  },
-  form: {
-    marginVertical: 80,
-    padding: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  label: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginBottom: 10,
-    color: '#333',
-  },
-  textInput: {
-    borderWidth: 1,
-    borderColor: '#ddd',
-    borderRadius: 8,
-    padding: 15,
-    fontSize: 16,
-    minHeight: 120,
-    marginBottom: 20,
-  },
-  button: {
-    backgroundColor: COLORS.primary,
-    paddingVertical: 15,
-    borderRadius: 8,
-    alignItems: 'center',
-  },
-  buttonDisabled: {
-    opacity: 0.6,
-  },
-  buttonText: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: 'bold',
   },
 });

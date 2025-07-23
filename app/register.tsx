@@ -6,6 +6,11 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import {
   Alert,
+  KeyboardAvoidingView,
+  Platform,
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
   StyleSheet,
   Text,
   TextInput,
@@ -29,47 +34,80 @@ export default function RegisterScreen() {
   };
 
   return (
-    <View style={styles.container}>
-      <Header />
-      <Text style={styles.title}>Criar Conta</Text>
+    <>
+      <StatusBar barStyle="dark-content" />
+      <SafeAreaView style={styles.safeArea}>
+        <KeyboardAvoidingView
+          style={styles.keyboardView}
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+          keyboardVerticalOffset={80}
+        >
+          <ScrollView
+            contentContainerStyle={styles.scrollContainer}
+            showsVerticalScrollIndicator={false}
+            keyboardShouldPersistTaps="handled"
+          >
+            <View style={styles.container}>
+              <Header />
+              <Text style={styles.title}>Criar Conta</Text>
 
-      <TextInput
-        style={styles.input}
-        placeholder="E-mail"
-        keyboardType="email-address"
-        value={email}
-        onChangeText={setEmail}
-        placeholderTextColor="#888"
-      />
+              <TextInput
+                style={styles.input}
+                placeholder="E-mail"
+                keyboardType="email-address"
+                value={email}
+                onChangeText={setEmail}
+                placeholderTextColor="#888"
+              />
 
-      <TextInput
-        style={styles.input}
-        placeholder="Senha"
-        secureTextEntry
-        value={password}
-        onChangeText={setPassword}
-        placeholderTextColor="#888"
-      />
+              <TextInput
+                style={styles.input}
+                placeholder="Senha"
+                secureTextEntry
+                value={password}
+                onChangeText={setPassword}
+                placeholderTextColor="#888"
+              />
 
-      <TouchableOpacity style={styles.button} onPress={handleRegister}>
-        <Text style={styles.buttonText}>Registrar</Text>
-      </TouchableOpacity>
+              <TouchableOpacity style={styles.button} onPress={handleRegister}>
+                <Text style={styles.buttonText}>Registrar</Text>
+              </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => router.replace("/login")}>
-        <Text style={styles.linkText}>Já tem conta? Entrar</Text>
-      </TouchableOpacity>
-    </View>
+              <TouchableOpacity onPress={() => router.replace("/login")}>
+                <Text style={styles.linkText}>Já tem conta? Entrar</Text>
+              </TouchableOpacity>
+            </View>
+          </ScrollView>
+        </KeyboardAvoidingView>
+      </SafeAreaView>
+    </>
   );
 }
+
 const styles = StyleSheet.create({
-  container: {
+  safeArea: {
     flex: 1,
+    marginTop: Platform.OS === "android" ? 25 : 0,
     backgroundColor: COLORS.background,
+  },
+  keyboardView: {
+    flex: 1,
+  },
+  scrollContainer: {
+    flexGrow: 1,
     justifyContent: "center",
     alignItems: "center",
     paddingHorizontal: 24,
   },
+  container: {
+    width: "100%",
+    maxWidth: 400,
+    alignSelf: "center",
+    justifyContent: "center",
+    alignItems: "center",
+  },
   title: {
+    marginTop: 8,
     fontSize: 24,
     color: COLORS.primary,
     fontWeight: "bold",

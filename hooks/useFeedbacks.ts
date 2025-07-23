@@ -1,4 +1,4 @@
-import { createFeedback, getUserFeedbacks } from "@/services/feedbackService";
+import { createFeedback, deleteFeedback, getUserFeedbacks } from "@/services/feedbackService";
 import { useFocusEffect } from "expo-router";
 import { useCallback, useState } from "react";
 import { Alert } from "react-native";
@@ -49,10 +49,20 @@ export function useFeedbacks() {
     }
     try {
       await createFeedback({ comment, rating });
-      // Não precisa atualizar manualmente, pois ao voltar para a tela, o useFocusEffect recarrega a lista
     } catch (error: any) {
       console.error("Erro ao criar feedback:", error);
       Alert.alert("Erro", "Não foi possível enviar o feedback");
+    }
+  };
+
+  const removeFeedback = async (feedbackId: string) => {
+    try {
+      await deleteFeedback(feedbackId);
+      setFeedbacks((prev) => prev.filter(fb => fb.id !== feedbackId));
+      await fetchFeedbacks();
+    } catch (error: any) {
+      console.error("Erro ao deletar feedback:", error);
+      Alert.alert("Erro", "Não foi possível deletar o feedback");
     }
   };
 
@@ -60,5 +70,6 @@ export function useFeedbacks() {
     feedbacks,
     loading,
     addFeedback,
+    removeFeedback,
   };
 }
